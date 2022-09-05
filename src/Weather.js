@@ -55,7 +55,7 @@ export default function Weather() {
             <div className="float-left">
               <strong>{weatherData.temperature}</strong>
               <span className="units">
-                <a href="#">°C</a>│<a href="#">°F</a>
+                <button>°C</button>│<button>°F</button>
               </span>
             </div>
           </div>
