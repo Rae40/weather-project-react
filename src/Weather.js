@@ -1,17 +1,27 @@
-import React from "react";
+import React, {useState} from "react";
+import axios from "axios";
 import "./Weather.css";
 
 export default function Weather() {
-  let weatherData = {
-    city: "New York",
-    temperature: 12,
-    date: "Saturday 4:00",
-    description: "Partly Cloudy",
-    imgUrl: "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
-    humidity: 80,
-    wind: 30,
-  };
-  return (
+  const [weatherData, setWeatherData]= useState({ready: false});
+  function handleResponse (response){
+    setWeatherData({
+      ready: true,
+      temperature: response.data.main.temp,
+      date: "Saturday 4:00",
+      humidity: response.data.main.humidity,
+      description: response.data.weather[0].description,
+      imgUrl: "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+      wind: response.data.wind.speed,
+      city: response.data.main.name,
+    });
+    
+
+    
+  }
+
+  if (weatherData.ready){
+    return (
     <div className="Weather">
       <form className="mb-3">
         <div className="row">
@@ -41,7 +51,7 @@ export default function Weather() {
             last updated:
             {weatherData.date}
           </li>
-          <li>{weatherData.desciption}</li>
+          <li className="text-capitalize">{weatherData.desciption}</li>
         </ul>
       </div>
       <div className="row">
@@ -53,7 +63,7 @@ export default function Weather() {
               className="float-left"
             />
             <div className="float-left">
-              <strong>{weatherData.temperature}</strong>
+              <strong>{Math.round(weatherData.temperature)}</strong>
               <span className="units">
                 <button>°C</button>│<button>°F</button>
               </span>
@@ -68,5 +78,16 @@ export default function Weather() {
         </div>
       </div>
     </div>
-  );
+    );
+  } else {
+
+  const apiKey= "500b3e347fb42fdce954cc2ffb572cb8";
+  let city = "New York";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}}&appid=${apiKey}&units=metrics`;
+  axios.get(apiUrl).then(handleResponse);
+
+  return "Loading....";
+  
+  
+  }
 }
