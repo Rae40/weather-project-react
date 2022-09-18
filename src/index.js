@@ -11,7 +11,10 @@ function App() {
   return (
     <div className="App">
       <Weather defaultCity="New York" />
-      <a href="https://github.com/Rae40/weather-project-react">
+      <a href="https://github.com/Rae40/weather-project-react" 
+      target="_blank"
+      rel="noopener noreferrer">
+
         Open-source coded
       </a>{" "}
       by Renee Christian
