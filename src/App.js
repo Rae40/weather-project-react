@@ -1,18 +1,21 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import Weather from "./Weather";
-
 
 import "./App.css";
 
-function App() {
+export default function App() {
   return (
     <div className="App">
+      <div className="container">
       <Weather defaultCity="New York" />
+      <a
+        href="https://github.com/Rae40/weather-project-react"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Open-source coded
+      </a>{" "}
+      by Renee Christian
     </div>
-  );
-}
-
-const rootElement = document.getElementById("root");
-ReactDOM.render(<App />, rootElement);
-
+    </div>
+  );}

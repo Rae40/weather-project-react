@@ -1,26 +1,12 @@
 import React from "react";
-import ReactDOM from "react-dom";
-import Weather from "./Weather";
+import {createRoot} from "react-dom/client";
 import "bootstrap/dist/css/bootstrap.css";
 
 // Put any other imports below so that CSS from your
 // components takes precedence over default styles.
-import "./App.css";
+import App from "./App";
 
-function App() {
-  return (
-    <div className="App">
-      <Weather defaultCity="New York" />
-      <a href="https://github.com/Rae40/weather-project-react" 
-      target="_blank"
-      rel="noopener noreferrer">
 
-        Open-source coded
-      </a>{" "}
-      by Renee Christian
-    </div>
-  );
-}
-
-const rootElement = document.getElementById("root");
-ReactDOM.render(<App />, rootElement);
+const container = document.getElementById("root");
+const root = createRoot(container);
+root.render(<App />);
